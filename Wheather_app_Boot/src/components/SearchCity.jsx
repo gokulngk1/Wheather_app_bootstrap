@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 
-const SearchCity = ({ onSearch }) => {
+const SearchCity = ({ onSearch, onLocate, locating }) => {
   const [city, setCity] = useState("");
 
   const submit = (e) => {
@@ -23,6 +23,14 @@ const SearchCity = ({ onSearch }) => {
           aria-label="City name"
         />
         <Button type="submit" variant="primary">Search</Button>
+        <Button
+          type="button"
+          variant={locating ? "warning" : "outline-secondary"}
+          onClick={() => onLocate && onLocate()}
+          title="Get weather for your current location"
+        >
+          {locating ? "Locating…" : "Use my location"}
+        </Button>
       </InputGroup>
     </Form>
   );

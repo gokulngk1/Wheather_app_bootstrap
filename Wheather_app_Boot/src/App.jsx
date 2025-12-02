@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// removed unused logo imports
 import './App.css'
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import Header from "./components/Header";
@@ -12,7 +11,13 @@ import { useWeather } from "./hooks/useWeather";
 
 const App = () => {
   const [city, setCity] = useState("Chennai");
-  const { data, loading, error } = useWeather(city);
+  const [coords, setCoords] = useState(null);
+  const [locating, setLocating] = useState(false);
+  const [geoError, setGeoError] = useState(null);
+
+  // prefer coords if available; otherwise fall back to city string
+  const query = coords || city;
+  const { data, loading, error } = useWeather(query);
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -21,7 +26,37 @@ const App = () => {
       <Container className="my-4 flex-grow-1">
         <Row className="justify-content-center">
           <Col xs={12} md={8}>
-            <SearchCity onSearch={(c) => setCity(c)} />
+            <SearchCity
+              onSearch={(c) => {
+                setCoords(null);
+                setCity(c);
+                setGeoError(null);
+              }}
+              onLocate={() => {
+                if (!navigator?.geolocation) {
+                  setGeoError("Geolocation not supported in this browser.");
+                  return;
+                }
+
+                setLocating(true);
+                setGeoError(null);
+
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => {
+                    const { latitude: lat, longitude: lon } = pos.coords;
+                    setCoords({ lat, lon });
+                    setCity("");
+                    setLocating(false);
+                  },
+                  (err) => {
+                    setGeoError(err.message || "Failed to get location");
+                    setLocating(false);
+                  },
+                  { enableHighAccuracy: false, timeout: 10000 }
+                );
+              }}
+              locating={locating}
+            />
           </Col>
         </Row>
 
@@ -29,6 +64,7 @@ const App = () => {
           <Col xs={12} md={6} className="d-flex justify-content-center">
             {loading && <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
             {error && <Alert variant="danger">{error}</Alert>}
+            {geoError && <Alert variant="warning">{geoError}</Alert>}
             {!loading && !error && <WeatherCard data={data} />}
           </Col>
 
