@@ -18,7 +18,7 @@ export const useWeather = (query) => {
 
         let url;
         if (typeof query === "string") {
-          url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+          url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(
             query
           )}&appid=${API_KEY}&units=metric`;
         } else if (typeof query === "object" && query?.lat != null && query?.lon != null) {

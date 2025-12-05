@@ -1,8 +1,11 @@
 import React from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import { Card } from "react-bootstrap";
+import { useTemp } from "../context/TempContext";
 
 const WeatherChart = ({ data }) => {
+  const { convertTemp, unit } = useTemp();
+
   if (!data) {
     return (
       <Card style={{ width: "100%", maxWidth: 480 }}>
@@ -15,8 +18,8 @@ const WeatherChart = ({ data }) => {
 
   // Build chart-friendly array (simple single-point chart of a few metrics)
   const chartData = [
-    { name: "Temp (°C)", value: data.main?.temp ?? 0 },
-    { name: "Feels Like (°C)", value: data.main?.feels_like ?? 0 },
+    { name: `Temp (°${unit})`, value: convertTemp(data.main?.temp ?? 0) },
+    { name: `Feels Like (°${unit})`, value: convertTemp(data.main?.feels_like ?? 0) },
     { name: "Humidity (%)", value: data.main?.humidity ?? 0 },
     { name: "Wind (m/s)", value: data.wind?.speed ?? 0 }
   ];

@@ -1,7 +1,10 @@
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
+import { useTemp } from "../context/TempContext";
 
 const WeatherCard = ({ data }) => {
+  const { convertTemp, unit } = useTemp();
+
   if (!data) {
     return (
       <Card style={{ width: "20rem" }}>
@@ -27,12 +30,12 @@ const WeatherCard = ({ data }) => {
             style={{ width: 100, height: 100 }}
           />
         )}
-        <h2>{Math.round(main?.temp)}°C</h2>
+        <h2>{convertTemp(main?.temp)}°{unit}</h2>
         <Card.Subtitle className="mb-2 text-muted text-capitalize">{description}</Card.Subtitle>
       </Card.Body>
 
       <ListGroup variant="flush">
-        <ListGroup.Item>Feels like: {Math.round(main?.feels_like)}°C</ListGroup.Item>
+        <ListGroup.Item>Feels like: {convertTemp(main?.feels_like)}°{unit}</ListGroup.Item>
         <ListGroup.Item>Humidity: {main?.humidity}%</ListGroup.Item>
         <ListGroup.Item>Pressure: {main?.pressure} hPa</ListGroup.Item>
         <ListGroup.Item>Wind: {wind?.speed} m/s</ListGroup.Item>

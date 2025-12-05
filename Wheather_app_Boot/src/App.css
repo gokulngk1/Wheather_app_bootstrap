@@ -5,6 +5,102 @@
   text-align: center;
 }
 
+/* Typography */
+body, button, input, select, textarea {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+/* Transparent Input Styling */
+.form-control, .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border: 2px solid rgba(100, 150, 200, 0.3) !important;
+  color: #333 !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(100, 150, 200, 0.6) !important;
+  box-shadow: 0 0 8px rgba(100, 150, 200, 0.2) !important;
+}
+
+.form-control::placeholder {
+  color: rgba(100, 100, 100, 0.7);
+}
+
+/* Button Styling */
+.btn {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0077be;
+  border-color: #0077be;
+}
+
+.btn-primary:hover {
+  background-color: #005a8d;
+  border-color: #005a8d;
+}
+
+.btn-outline-secondary {
+  border-color: rgba(100, 150, 200, 0.4);
+  color: #0077be;
+}
+
+.btn-outline-secondary:hover {
+  background-color: rgba(0, 119, 190, 0.1);
+  border-color: #0077be;
+  color: #0077be;
+}
+
+.btn-warning {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  border-color: #d97706;
+}
+
+/* Card Styling */
+.card {
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* Logo styles (legacy) */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -31,10 +127,6 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
 }
 
 .read-the-docs {

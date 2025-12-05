@@ -1,5 +1,4 @@
 import { useState } from 'react'
-// removed unused logo imports
 import './App.css'
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import Header from "./components/Header";
@@ -7,16 +6,15 @@ import Footer from "./components/Footer";
 import SearchCity from "./components/SearchCity";
 import WeatherCard from "./components/WeatherCard";
 import WeatherChart from "./components/WeatherChart";
-import { useWeather } from "./hooks/useWeather";
-
+import { useWeather } from './hooks/useWeather';
 const App = () => {
   const [city, setCity] = useState("Chennai");
   const [coords, setCoords] = useState(null);
   const [locating, setLocating] = useState(false);
   const [geoError, setGeoError] = useState(null);
 
-  // prefer coords if available; otherwise fall back to city string
-  const query = coords || city;
+ 
+   const query = coords || city;
   const { data, loading, error } = useWeather(query);
 
   return (
