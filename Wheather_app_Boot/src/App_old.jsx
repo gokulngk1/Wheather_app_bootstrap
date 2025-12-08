@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import Footer from "./components/Footer";
@@ -7,62 +7,45 @@ import WeatherCard from "./components/WeatherCard";
 import WeatherChart from "./components/WeatherChart";
 import { useWeather } from './hooks/useWeather';
 
-import { stateCities } from "./data/stateCities";
+import { stateCities } from "./data/stateCities";  // ✅ NEW
 
 const App = () => {
   const [city, setCity] = useState("Chennai");
   const [coords, setCoords] = useState(null);
   const [locating, setLocating] = useState(false);
   const [geoError, setGeoError] = useState(null);
-  const [userState, setUserState] = useState("Tamil Nadu");
+
+  const [userState, setUserState] = useState(""); // ✅ NEW
 
   const query = coords || city;
   const { data, loading, error } = useWeather(query);
 
-  // ✅ Find state by city name
-  const getStateByCity = (cityName) => {
-    for (const [state, cities] of Object.entries(stateCities)) {
-      if (cities.some(c => c.toLowerCase() === cityName.toLowerCase())) {
-        return state;
-      }
-    }
-    return "Tamil Nadu"; // Default fallback
-  };
-
-  // ✅ Reverse geocoding to detect user's state from coordinates
+  // ✅ Reverse geocoding to detect user's state
   const getStateFromCoords = async (lat, lon) => {
     try {
       const res = await fetch(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=4e8a86f79d5484ae4cda8af753e9e97f`
       );
       const json = await res.json();
-      return json[0]?.state || "Tamil Nadu";
+      return json[0]?.state || "";
     } catch {
-      return "Tamil Nadu";
+      return "";
     }
   };
-
-  // ✅ Update state when city changes
-  useEffect(() => {
-    if (city) {
-      const detectedState = getStateByCity(city);
-      setUserState(detectedState);
-    }
-  }, [city]);
 
   return (
     <div className="d-flex flex-column min-vh-100">
 
       <Container className="my-4 flex-grow-1">
-        {/* Major Cities (dynamic) + Search (center) + Tamil Nadu (fixed right) */}
+        {/* Header + Search + Major Cities Row */}
         <Row className="mb-4">
-          {/* Left: Dynamic Major Cities for detected state */}
-          <Col xs={12} md={3} className="mb-3 mb-md-0">
-            {userState && stateCities[userState] && (
+          {/* Left: Major Cities */}
+          <Col xs={12} md={4} className="mb-3 mb-md-0">
+            {stateCities["Tamil Nadu"] && (
               <div className="text-center">
-                <h6 className="fw-bold mb-3">Major Cities in {userState}</h6>
+                <h5 className="fw-bold mb-3">Major Cities in Tamil Nadu</h5>
                 <div className="d-flex flex-column gap-2">
-                  {stateCities[userState].map((cityName) => (
+                  {stateCities["Tamil Nadu"].map((cityName) => (
                     <button
                       key={cityName}
                       className="btn btn-outline-primary w-100"
@@ -80,8 +63,8 @@ const App = () => {
             )}
           </Col>
 
-          {/* Center: Search */}
-          <Col xs={12} md={6}>
+          {/* Right: Search */}
+          <Col xs={12} md={8}>
             <SearchCity
               onSearch={(c) => {
                 setCoords(null);
@@ -118,30 +101,6 @@ const App = () => {
               }}
               locating={locating}
             />
-          </Col>
-
-          {/* Right: Tamil Nadu - show buttons in a row (wrap on small screens) */}
-          <Col xs={12} md={3} className="mb-3 mb-md-0">
-            {stateCities["Tamil Nadu"] && (
-              <div className="text-center">
-                <h6 className="fw-bold mb-3">Major Cities in Tamil Nadu</h6>
-                <div className="d-flex flex-row flex-wrap gap-2 justify-content-center">
-                  {stateCities["Tamil Nadu"].map((cityName) => (
-                    <button
-                      key={cityName}
-                      className="btn btn-outline-secondary"
-                      onClick={() => {
-                        setCoords(null);
-                        setCity(cityName);
-                        setGeoError(null);
-                      }}
-                    >
-                      {cityName}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
           </Col>
         </Row>
 
