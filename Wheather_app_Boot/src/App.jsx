@@ -119,30 +119,6 @@ const App = () => {
               locating={locating}
             />
           </Col>
-
-          {/* Right: Tamil Nadu - show buttons in a row (wrap on small screens) */}
-          <Col xs={12} md={3} className="mb-3 mb-md-0">
-            {stateCities["Tamil Nadu"] && (
-              <div className="text-center">
-                <h6 className="fw-bold mb-3">Major Cities in Tamil Nadu</h6>
-                <div className="d-flex flex-row flex-wrap gap-2 justify-content-center">
-                  {stateCities["Tamil Nadu"].map((cityName) => (
-                    <button
-                      key={cityName}
-                      className="btn btn-outline-secondary"
-                      onClick={() => {
-                        setCoords(null);
-                        setCity(cityName);
-                        setGeoError(null);
-                      }}
-                    >
-                      {cityName}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </Col>
         </Row>
 
         <Row className="mt-3">
