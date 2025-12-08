@@ -132,3 +132,38 @@ h4 { font-size: 1.25rem; }
 .read-the-docs {
   color: #888;
 }
+
+/* Responsive search input group */
+.input-group-responsive {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .input-group-responsive {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group-responsive .form-control {
+    width: 100%;
+  }
+
+  .input-group-responsive .btn {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input-group-responsive .input-group-text {
+    align-self: flex-start;
+  }
+
+  .searchcity-root { width: 100%; }
+}
+
+@media (min-width: 577px) {
+  .input-group-responsive .input-group-text { min-width: 54px; text-align:center; }
+}
