@@ -1,75 +1,169 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===========================
+   GLOBAL THEME (MSN WEATHER)
+=========================== */
+
+:root {
+  --bg-gradient-1: #0a0f2c;
+  --bg-gradient-2: #312c66;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --primary-text: #ffffff;
+  --secondary-text: #b9b9d0;
+  --accent: #6b7cff;
+
+  font-family: 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--primary-text);
+  background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+/* Remove default body centering (Vite style) */
 body {
-  /* MSN-like HD cloud background */
-  background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 40%, #f0f8ff 100%);
-  background-attachment: fixed;
+  margin: 0;
+  min-width: 320px;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  position: relative;
-  overflow-x: hidden;
+  background: inherit;
+  display: block !important;
 }
 
-html, #root {
-  height: 100%;
+/* ===========================
+   LINKS
+=========================== */
+a {
+  font-weight: 500;
+  color: var(--accent);
+  transition: 0.2s;
 }
 
-/* Animated cloud background effect */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3Cfilter id='shadow'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='3'/%3E%3C/filter%3E%3C/defs%3E%3C!-- Large cloud 1 --%3E%3Cpath d='M100,200 Q150,150 200,200 Q250,150 300,200 Q350,180 380,230 Q350,280 300,280 Q250,310 200,280 Q150,310 100,280 Q50,280 30,230 Q50,180 100,200' fill='rgba(255,255,255,0.6)' filter='url(%23shadow)'/%3E%3C!-- Large cloud 2 --%3E%3Cpath d='M600,100 Q670,50 740,100 Q810,40 880,100 Q920,70 950,130 Q920,180 880,180 Q810,220 740,180 Q670,220 600,180 Q550,180 530,130 Q550,70 600,100' fill='rgba(255,255,255,0.5)' filter='url(%23shadow)'/%3E%3C!-- Large cloud 3 --%3E%3Cpath d='M200,400 Q270,350 340,400 Q410,340 480,400 Q520,370 550,430 Q520,480 480,480 Q410,520 340,480 Q270,520 200,480 Q150,480 130,430 Q150,370 200,400' fill='rgba(255,255,255,0.55)' filter='url(%23shadow)'/%3E%3C!-- Large cloud 4 --%3E%3Cpath d='M800,350 Q870,300 940,350 Q1010,290 1080,350 Q1120,320 1150,380 Q1120,430 1080,430 Q1010,470 940,430 Q870,470 800,430 Q750,430 730,380 Q750,320 800,350' fill='rgba(255,255,255,0.48)' filter='url(%23shadow)'/%3E%3C!-- Small cloud 1 --%3E%3Cpath d='M350,150 Q380,120 410,150 Q440,120 470,150 Q490,135 500,160 Q490,185 470,185 Q440,205 410,185 Q380,205 350,185 Q330,185 320,160 Q330,135 350,150' fill='rgba(255,255,255,0.4)' filter='url(%23shadow)'/%3E%3C!-- Small cloud 2 --%3E%3Cpath d='M950,500 Q980,470 1010,500 Q1040,470 1070,500 Q1090,485 1100,510 Q1090,535 1070,535 Q1040,555 1010,535 Q980,555 950,535 Q930,535 920,510 Q930,485 950,500' fill='rgba(255,255,255,0.42)' filter='url(%23shadow)'/%3E%3C/svg%3E");
-  background-size: 1200px 600px;
-  background-repeat: repeat;
-  background-position: 0 0;
-  animation: cloudDrift 120s linear infinite;
-  pointer-events: none;
-  z-index: 0;
+a:hover {
+  color: #8d94ff;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3Cfilter id='shadow2'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='2.5'/%3E%3C/filter%3E%3C/defs%3E%3C!-- Cloud layer 2 --%3E%3Cpath d='M50,280 Q110,240 170,280 Q230,240 290,280 Q330,260 350,310 Q330,360 290,360 Q230,400 170,360 Q110,400 50,360 Q10,360 0,310 Q10,260 50,280' fill='rgba(255,255,255,0.25)' filter='url(%23shadow2)'/%3E%3Cpath d='M500,450 Q560,410 620,450 Q680,410 740,450 Q780,430 800,480 Q780,530 740,530 Q680,570 620,530 Q560,570 500,530 Q460,530 440,480 Q460,430 500,450' fill='rgba(255,255,255,0.28)' filter='url(%23shadow2)'/%3E%3C/svg%3E");
-  background-size: 1200px 600px;
-  background-repeat: repeat;
-  background-position: 0 0;
-  animation: cloudDrift 160s linear infinite reverse;
-  pointer-events: none;
-  z-index: 0;
+/* ===========================
+   HEADINGS
+=========================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-text);
+  margin: 0;
 }
 
-@keyframes cloudDrift {
-  0% { background-position: 0 0; }
-  100% { background-position: -1200px 0; }
+/* ===========================
+   BUTTONS (MSN STYLE)
+=========================== */
+button {
+  border-radius: 10px;
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--primary-text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+
+  transition: 0.25s ease;
 }
 
-/* Ensure content appears above clouds */
-body > * {
-  position: relative;
-  z-index: 1;
+button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
 }
 
-#root {
-  position: relative;
-  z-index: 1;
+/* Focus */
+button:focus,
+button:focus-visible {
+  outline: 3px solid var(--accent);
 }
 
-/* Cloud-like shadow and depth effects */
-.shadow-cloud {
-  box-shadow: 0 8px 32px rgba(100, 150, 200, 0.15),
-              0 2px 8px rgba(100, 150, 200, 0.1);
+/* ===========================
+   CARDS (Glassmorphism)
+=========================== */
+.msn-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  transition: 0.25s;
+}
+
+.msn-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Sidebar cards */
+.side-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+
+/* ===========================
+   INPUTS (Transparent MSN Style)
+=========================== */
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===========================
+   UTILITY CLASSES
+=========================== */
+
+/* Full-page background */
+.msn-bg {
+  background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Buttons used inside Major Cities list */
+.msn-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  padding: 10px 12px;
+}
+
+.msn-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
+}
+
+/* For search wrapper */
+.search-wrapper {
+  border-radius: 20px;
+}
+
+/* ===========================
+   LIGHT MODE FIX (Optional)
+=========================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #1c1c1c;
+    background: #ffffff;
+  }
 }
