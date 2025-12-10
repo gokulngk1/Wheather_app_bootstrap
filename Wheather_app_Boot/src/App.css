@@ -11,7 +11,7 @@
 /* Background — soft clouds like MSN Weather */
 body {
   margin: 0;
-  background: url("https://i.imgur.com/8m1lq7u.jpeg") no-repeat center center fixed;
+  /* background: url("https://i.imgur.com/8m1lq7u.jpeg") no-repeat center center fixed; */
   background-size: cover;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
