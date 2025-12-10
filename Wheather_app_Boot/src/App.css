@@ -198,4 +198,240 @@ h3 { font-size: 1.6rem; }
   transform: translateY(-4px);
 } 
 
+/* ENLARGED SEARCH BOX — MSN Style */
+.search-wrapper {
+  width: 100%;
+  min-height: 260px;          /* Bigger card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+}
 
+/* Bigger input size */
+.search-wrapper .form-control {
+  padding: 1.2rem 1.4rem !important;
+  font-size: 1.15rem !important;
+}
+
+/* Increase inner padding */
+.search-wrapper.msn-card {
+  padding: 2.4rem !important;
+}
+
+/* Make Locate & Search buttons equal size */
+.search-wrapper .btn {
+  padding: 0.9rem 1.4rem !important;
+  font-size: 1.05rem !important;
+  font-weight: 600;
+}
+
+
+/* Smooth card shape */
+.msn-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.2);
+}
+
+/* Search box container */
+.search-wrapper {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Make input elegant */
+.search-wrapper input {
+  padding: 1rem 1.2rem !important;
+  font-size: 1.1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+/* Round buttons inside search box */
+.search-wrapper button {
+  border-radius: 50px !important;
+  padding: 0.7rem 1rem !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Major cities styling */
+.major-cities-card {
+  min-height: 260px;
+}
+
+.cities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.city-btn {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 14px;
+  background: rgba(230, 4, 102, 0);
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.city-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.major-cities-card h5 {
+  color: #ffffff !important;
+}
+
+.city-title {
+  color: #dbe7ff !important;   /* Light sky blue white-ish */
+  text-align: right;
+  letter-spacing: 0.4px;
+}
+
+.cities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+/* Major Cities Box */
+.major-cities-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Title */
+.city-title {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+/* List arranged in column (rectangle style) */
+.cities-list-rect {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* MSN-style rectangle buttons */
+.city-rect-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* Hover effect */
+.city-rect-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px);
+}
+
+/* Selected state */
+.city-rect-btn.selected {
+  border: 2px solid #6b7cff;
+  background: rgba(120, 140, 255, 0.20);
+  box-shadow: 0px 0px 12px rgba(120, 140, 255, 0.35);
+}
+
+/* Row container */
+.cities-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Each city button */
+.city-row-btn {
+  padding: 0.7rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* Hover effect */
+.city-row-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+/* Selected effect */
+.city-row-btn.selected {
+  background: rgba(120, 140, 255, 0.25);
+  border-color: #8090ff;
+  box-shadow: 0px 0px 10px rgba(120, 140, 255, 0.35);
+}
+
+
+.cities-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.city-row-btn {
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  white-space: nowrap;
+}
+
+.city-row-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+/* Highlight Selected City */
+.city-row-btn.selected {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: scale(1.05);
+  font-weight: 600;
+}
